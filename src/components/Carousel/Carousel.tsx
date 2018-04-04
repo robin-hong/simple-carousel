@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import CarouselToggles from './CarouselToggles'
 import CarouselSlide from './CarouselSlide'
 
-import {loadingSelector} from '../../store/Carousel/Carousel.selectors'
-import {toggleAnimal} from '../../store/Carousel/Carousel.actions'
+import {loadingSelector} from '@store/Carousel/Carousel.selectors'
+import {toggleAnimal} from '@store/Carousel/Carousel.actions'
 
 import {Spinner, SpinnerSize} from 'office-ui-fabric-react'
 import './style/Carousel.scss'

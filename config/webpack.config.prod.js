@@ -15,7 +15,13 @@ module.exports = {
     },
     mode: 'production',
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        modules: ['src', 'node_modules'],
+        extensions: ['.ts', '.tsx', '.js'],
+        alias: {
+            '@components': path.join(ROOT, 'src', 'components'),
+            '@store': path.join(ROOT, 'src', 'store'),
+            '@scene': path.join(ROOT, 'src', 'scene')
+        }
     },
     module: {
         rules: [
@@ -29,11 +35,7 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'ts-loader',
-                        options: {
-                            context: ROOT,
-                            configFile: path.join(ROOT, 'config', 'tsconfig.json')
-                        }
+                        loader: 'ts-loader'
                     }
                 ]
             },

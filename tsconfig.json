@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "sourceMap": true,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "baseUrl": "./",
+        "paths": {
+            "@store/*": ["src/store/*"],
+            "@components/*": ["src/components/*"],
+            "@scenes/*": ["src/scenes/*"]
+        }
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

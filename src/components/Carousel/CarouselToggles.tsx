@@ -2,8 +2,8 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import {Map} from 'immutable'
 
-import {toggleStatusSelector} from '../../store/Carousel/Carousel.selectors'
-import {toggleAnimal} from '../../store/Carousel/Carousel.actions'
+import {toggleStatusSelector} from '@store/Carousel/Carousel.selectors'
+import {toggleAnimal} from '@store/Carousel/Carousel.actions'
 
 import {DefaultButton} from 'office-ui-fabric-react'
 import './style/CarouselToggle.scss'

@@ -6,8 +6,8 @@ import {Icon} from 'office-ui-fabric-react'
 
 import './style/CarouselSlide.scss'
 
-import {imageListSelector, currentImageSelector} from '../../store/Carousel/Carousel.selectors'
-import {selectNext, selectPrev} from '../../store/Carousel/Carousel.actions'
+import {imageListSelector, currentImageSelector} from '@store/Carousel/Carousel.selectors'
+import {selectNext, selectPrev} from '@store/Carousel/Carousel.actions'
 
 interface CarouselSlideProps {
     images: List<string>
