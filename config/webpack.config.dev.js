@@ -33,7 +33,8 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['es2015']
+                            presets: ['es2015'],
+                            plugins: ['react-hot-loader/babel']
                         }
                     },
                     {
@@ -69,6 +70,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: path.join(ROOT, 'public', 'index.html')
         }),
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {

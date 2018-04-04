@@ -2,24 +2,22 @@ import 'regenerator-runtime/runtime'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
+import {hot} from 'react-hot-loader'
 
 import store from '@store/store'
-
-import Carousel from './components/Carousel/Carousel'
 
 import {initializeIcons} from '@uifabric/icons'
 initializeIcons()
 
-import './style/style.scss'
+import App from './app'
 
 class Root extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <Carousel />
+                <App />
             </Provider>
         )
     }
 }
-
 ReactDOM.render(<Root />, document.getElementById('root'))
