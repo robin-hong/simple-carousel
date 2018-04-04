@@ -41,25 +41,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'typings-for-css-modules-loader',
-                            options: {
-                                modules: true,
-                                namedExport: true,
-                                camelCase: true,
-                                localIdentName: '[name]__[local]__[hash:8]',
-                                importLoaders: 1,
-                                sourceMap: true
-                            }
-                        }
-                    ]
-                })
-            },
-            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -68,9 +49,11 @@ module.exports = {
                             loader: 'css-loader',
                             options: {
                                 modules: true,
+                                namedExport: true,
+                                camelCase: true,
+                                localIdentName: '[name]__[local]__[hash:8]',
                                 importLoaders: 1,
-                                localIdentName: '[name]_[local]_[hash:base64]',
-                                minimize: true
+                                sourceMap: true
                             }
                         },
                         {
