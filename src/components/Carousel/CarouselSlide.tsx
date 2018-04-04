@@ -2,12 +2,11 @@ import * as React from 'react'
 import {connect} from 'react-redux'
 import {List} from 'immutable'
 
-import {Icon} from 'office-ui-fabric-react'
-
-import './style/CarouselSlide.scss'
-
 import {imageListSelector, currentImageSelector} from '@store/Carousel/Carousel.selectors'
 import {selectNext, selectPrev} from '@store/Carousel/Carousel.actions'
+
+import {Icon} from 'office-ui-fabric-react'
+import * as style from './style/CarouselSlide.scss'
 
 interface CarouselSlideProps {
     images: List<string>
@@ -35,18 +34,18 @@ const CarouselSlide: React.SFC<CarouselSlideProps> = props => {
 
     let content = null
     if (images.size > 0) {
-        content = <img className="carousel-content" src={images.get(currentImage)} />
+        content = <img className={style.carouselContent} src={images.get(currentImage)} />
     } else {
         content = <p>No photos</p>
     }
 
     return (
-        <div className="carousel-slide">
-            <a className="carousel-control carousel-control--prev" onClick={() => prev()}>
+        <div className={style.carouselSlide}>
+            <a className={style.carouselControl} onClick={() => prev()}>
                 <Icon iconName="ChevronLeftMed" />
             </a>
-            {content}
-            <a className="carousel-control carousel-control--next" onClick={() => next()}>
+            <div className={style.carouselContentContainer}>{content}</div>
+            <a className={style.carouselControl} onClick={() => next()}>
                 <Icon iconName="ChevronRightMed" />
             </a>
         </div>

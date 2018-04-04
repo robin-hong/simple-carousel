@@ -6,7 +6,7 @@ import {toggleStatusSelector} from '@store/Carousel/Carousel.selectors'
 import {toggleAnimal} from '@store/Carousel/Carousel.actions'
 
 import {DefaultButton} from 'office-ui-fabric-react'
-import './style/CarouselToggle.scss'
+import * as style from './style/CarouselToggle.scss'
 
 interface CarouselTogglesProps {
     toggleStatus: Map<string, boolean>
@@ -29,15 +29,15 @@ const CarouselToggles: React.SFC<CarouselTogglesProps> = props => {
     const {toggleStatus, toggleAnimal} = props
 
     return (
-        <div className="carousel-toggles">
+        <div className={style.carouselToggles}>
             <DefaultButton
-                className="carousel-toggles--button"
+                className={style.carouselTogglesButton}
                 primary={toggleStatus.get('sharks')}
                 onClick={() => toggleAnimal('sharks')}
                 text="Sharks"
             />
             <DefaultButton
-                className="carousel-toggles--button"
+                className={style.carouselTogglesButton}
                 primary={toggleStatus.get('cats')}
                 onClick={() => toggleAnimal('cats')}
                 text="Cats"

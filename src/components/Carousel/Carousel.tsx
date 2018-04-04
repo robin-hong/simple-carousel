@@ -8,7 +8,7 @@ import {loadingSelector} from '@store/Carousel/Carousel.selectors'
 import {toggleAnimal} from '@store/Carousel/Carousel.actions'
 
 import {Spinner, SpinnerSize} from 'office-ui-fabric-react'
-import './style/Carousel.scss'
+import * as style from './style/Carousel.scss'
 
 interface CarouselProps {
     loading: boolean
@@ -38,13 +38,13 @@ class Carousel extends React.PureComponent<CarouselProps> {
         let loadingScreen = null
         if (loading) {
             loadingScreen = (
-                <div className="loading-screen">
+                <div className={style.loadingScreen}>
                     <Spinner size={SpinnerSize.large} />
                 </div>
             )
         }
         return (
-            <div className="carousel">
+            <div className={style.carousel}>
                 <CarouselToggles />
                 <CarouselSlide />
                 {loadingScreen}
