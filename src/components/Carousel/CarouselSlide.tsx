@@ -32,11 +32,30 @@ const mapDispatchToProps = dispatch => {
 const CarouselSlide: React.SFC<CarouselSlideProps> = props => {
     const {images, currentImage, prev, next} = props
 
-    let content = null
+    let content = []
     if (images.size > 0) {
-        content = <img className={style.carouselContent} src={images.get(currentImage)} />
+        images.forEach((image, i) => {
+            let active = i === currentImage && style.active
+            let left =
+                (currentImage - 1 === i || (currentImage === 0 && i === images.size - 1)) &&
+                style.left
+            let right =
+                (currentImage + 1 === i || (currentImage === images.size - 1 && i === 0)) &&
+                style.right
+            content.push(
+                <img
+                    key={i}
+                    className={`${style.carouselContent} ${active} ${left} ${right}`}
+                    src={images.get(i)}
+                />
+            )
+        })
     } else {
-        content = <p>No photos</p>
+        content.push(
+            <p key="none" className={style.noPhotos}>
+                No photos
+            </p>
+        )
     }
 
     return (
