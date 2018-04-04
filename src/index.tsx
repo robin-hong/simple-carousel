@@ -10,7 +10,7 @@ import Carousel from './components/Carousel/Carousel'
 import {initializeIcons} from '@uifabric/icons'
 initializeIcons()
 
-import * as style from './style.scss'
+import './style/style.scss'
 
 class Root extends React.Component {
     render() {

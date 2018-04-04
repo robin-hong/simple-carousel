@@ -21,7 +21,8 @@ module.exports = {
         alias: {
             '@components': path.join(ROOT, 'src', 'components'),
             '@store': path.join(ROOT, 'src', 'store'),
-            '@scene': path.join(ROOT, 'src', 'scene')
+            '@scene': path.join(ROOT, 'src', 'scene'),
+            '@style': path.join(ROOT, 'src', 'style')
         }
     },
     module: {

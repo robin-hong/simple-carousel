@@ -9,7 +9,8 @@
         "paths": {
             "@store/*": ["src/store/*"],
             "@components/*": ["src/components/*"],
-            "@scenes/*": ["src/scenes/*"]
+            "@scenes/*": ["src/scenes/*"],
+            "@style/*": ["src/style/*"]
         }
     },
     "include": ["src"],
