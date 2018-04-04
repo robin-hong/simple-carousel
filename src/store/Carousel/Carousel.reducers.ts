@@ -22,7 +22,7 @@ function data(state = initialState, action: ReduxAction) {
                     .set('loading', false)
                     .set('currentImage', 0)
             })
-        case actionTypes.CAROUSEL_SET_TOGGLE:
+        case actionTypes.CAROUSEL_SET_TOGGLE_STATUS:
             const active = state.getIn(['toggleStatus', action.payload.animal], false)
             return state.withMutations(map => {
                 map.setIn(['toggleStatus', action.payload.animal], !active).set('loading', true)

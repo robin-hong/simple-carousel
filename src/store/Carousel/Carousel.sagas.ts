@@ -1,7 +1,7 @@
 import {delay} from 'redux-saga'
 import {takeLatest, call, put, select} from 'redux-saga/effects'
 import * as actionTypes from './Carousel.actionTypes'
-import {setImageList} from './Carousel.actions'
+import {setImageList, setToggleStatus} from './Carousel.actions'
 import {toggleStatusSelector} from './Carousel.selectors'
 
 const fetchData = async url => {
@@ -10,6 +10,8 @@ const fetchData = async url => {
 }
 
 function* callListApi(action) {
+    yield put(setToggleStatus(action.payload.animal))
+
     try {
         const toggleStatus = yield select(toggleStatusSelector)
         let type = 'none'
@@ -29,8 +31,6 @@ function* callListApi(action) {
     }
 }
 
-function* toggleAnimalSaga() {
-    yield takeLatest(actionTypes.CAROUSEL_SET_TOGGLE, callListApi)
+export default function* watchCarouselToggle() {
+    yield takeLatest(actionTypes.CAROUSEL_TOGGLE_ANIMAL, callListApi)
 }
-
-export default [toggleAnimalSaga()]
