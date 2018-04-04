@@ -37,7 +37,7 @@ function data(state = initialState, action: ReduxAction) {
         case actionTypes.CAROUSEL_PREV:
             var i: number = state.get('currentImage', 0) - 1
             var length: number = state.get('imageList').size
-            if (i <= 0) {
+            if (i < 0) {
                 i = length - 1
             }
             return state.set('currentImage', i)
