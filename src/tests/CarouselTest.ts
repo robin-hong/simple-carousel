@@ -1,11 +1,9 @@
+import {call} from 'redux-saga/effects'
+import {fromJS, List} from 'immutable'
+
 import * as actionTypes from '@store/Carousel/Carousel.actionTypes'
 import * as actions from '@store/Carousel/Carousel.actions'
-import * as sagas from '@store/Carousel/Carousel.sagas'
-import * as selectors from '@store/Carousel/Carousel.selectors'
 import reducer from '@store/Carousel/Carousel.reducers'
-import {expectSaga} from 'redux-saga-test-plan'
-import {call} from 'redux-saga/effects'
-import {fromJS} from 'immutable'
 
 const initialState = fromJS({
     carouselDomain: {
@@ -50,5 +48,113 @@ const catsList = [
 describe('carousel test', () => {
     it('Return initial state', () => {
         expect(reducer(undefined, {})).toEqual(initialState.get('carouselDomain'))
+    })
+
+    it('add cats', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(catsList))
+        const action = {
+            type: actionTypes.CAROUSEL_SET_LIST,
+            payload: {list: catsList}
+        }
+
+        expect(reducer(undefined, action)).toEqual(expectedState)
+    })
+
+    it('add sharks', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+        const action = {
+            type: actionTypes.CAROUSEL_SET_LIST,
+            payload: {list: sharksList}
+        }
+
+        expect(reducer(undefined, action)).toEqual(expectedState)
+    })
+
+    it('add both', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList.concat(catsList)))
+        const action = {
+            type: actionTypes.CAROUSEL_SET_LIST,
+            payload: {list: sharksList.concat(catsList)}
+        }
+
+        expect(reducer(undefined, action)).toEqual(expectedState)
+    })
+
+    it('go next', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 1)
+
+        const state = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 0)
+
+        const action = {
+            type: actionTypes.CAROUSEL_NEXT
+        }
+
+        expect(reducer(state, action)).toEqual(expectedState)
+    })
+
+    it('go prev', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 0)
+
+        const state = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 1)
+
+        const action = {
+            type: actionTypes.CAROUSEL_PREV
+        }
+
+        expect(reducer(state, action)).toEqual(expectedState)
+    })
+
+    it('go next to start of list', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 0)
+
+        const state = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 9)
+
+        const action = {
+            type: actionTypes.CAROUSEL_NEXT
+        }
+
+        expect(reducer(state, action)).toEqual(expectedState)
+    })
+
+    it('go prev to end of list', () => {
+        const expectedState = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 9)
+
+        const state = initialState
+            .get('carouselDomain')
+            .setIn(['data', 'imageList'], List(sharksList))
+            .setIn(['data', 'currentImage'], 0)
+
+        const action = {
+            type: actionTypes.CAROUSEL_PREV
+        }
+
+        expect(reducer(state, action)).toEqual(expectedState)
     })
 })
